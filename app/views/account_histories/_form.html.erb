@@ -1,0 +1,27 @@
+<%= form_with(model: account_history) do |form| %>
+  <% if account_history.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(account_history.errors.count, "error") %> prohibited this account_history from being saved:</h2>
+
+      <ul>
+        <% account_history.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :credit_rating %>
+    <%= form.number_field :credit_rating %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Account_id %>
+    <%= form.text_field :Account_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
