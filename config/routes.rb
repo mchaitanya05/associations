@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admin/login'
+  post   'admin/login'   => 'admin#create'
   resources :books
   resources :authors
   resources :account_histories
