@@ -1,10 +1,10 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-  before_action :admin_loggedin, only: %i[ index show edit update destroy ]
+  before_action :admin_loggedin
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    @books = Book.paginate(page: params[:page])
   end
 
   # GET /books/1 or /books/1.json
@@ -70,7 +70,7 @@ class BooksController < ApplicationController
     end
 
     def admin_loggedin
-      if session[:admin].nil?
+      if session[:username].nil?
         flash[:notice] = 'Please login'
         redirect_to admin_login_path
       end

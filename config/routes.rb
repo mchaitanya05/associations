@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'admin/login'
   post   'admin/login'   => 'admin#create'
+  post 'admin/logout' => 'admin#destroy'
+  get 'admin/logout'
   resources :books
   resources :authors
   resources :account_histories
