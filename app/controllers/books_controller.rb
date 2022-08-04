@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-  before_action :admin_loggedin
+  # before_action :admin_loggedin
+  before_action :authenticate_user!
 
   # GET /books or /books.json
   def index
@@ -26,6 +27,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
+        NotificationMailMailer.send_mail(@book).deliver
         format.html { redirect_to book_url(@book), notice: "Book was successfully created." }
         format.json { render :show, status: :created, location: @book }
       else

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'admin/login'
   post   'admin/login'   => 'admin#create'
   post 'admin/logout' => 'admin#destroy'
