@@ -24,7 +24,6 @@ class BooksController < ApplicationController
   # POST /books or /books.json
   def create
     @book = Book.new(book_params)
-
     respond_to do |format|
       if @book.save
         NotificationMailMailer.send_mail(@book).deliver
@@ -68,7 +67,7 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:name, :author_id)
+      params.require(:book).permit(:name, :author_id, :book_image)
     end
 
     def admin_loggedin
